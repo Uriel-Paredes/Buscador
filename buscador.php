@@ -61,20 +61,20 @@ if(!empty($_POST["buscar"])) {
                 <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a ACM</button></a>
             </div>
             <div class="tab-pane fade" id="nav-sciencedirect" role="tabpanel" aria-labelledby="nav-sciencedirect-tab">
-                <p>Impulse la investigación y las becas con la base de datos líder en el mundo de literatura científica, técnica y de salud revisada por expertos y a texto completo. Nuestras funciones intuitivas facilitan mantenerse informado y trabajar de manera más eficiente.</p>
-                <p>Facilite la investigación interdisciplinaria y la erudición a través de 2.900 revistas revisadas por pares.</p>
+                <p>ScienceDirect es una base de datos en el mundo de la literatura científica, técnica y de salud revisada por pares y a texto completo. Sus funciones facilitan mantenerse informado y trabajar de manera más eficiente.</p>
+                <p>Incluye más de 2.900 revistas revisadas por pares.</p>
                 <ul>
                     <li>21 millones de artículos y capítulos de libros</li>
                     <li>800 revistas de acceso libre</li>
                     <li>3,3 millones de artículos de acceso libre</li>
                 </ul>
-                <p>Obtenga una cobertura completa de todas las disciplinas con las prestigiosas editoriales Academic Press, Woodhead Publishing y W.B. Saunders. Busque, lea y trabaje sin problemas en libros y revistas.</p>
+                <p>Además, incluye una cobertura completa de todas las disciplinas con las editoriales Academic Press, Woodhead Publishing y W.B. Saunders. Se puede buscar, leer y trabajar libremente en libros y revistas.</p>
                 <ul>
                     <li>46.000 libros</li>
                     <li>1.000.000 de autores</li>
                     <li>Más de 50 editoriales</li>
                 </ul>
-                <p>Obtenga una comprensión más profunda de más de 363.000 temas clave, términos desconocidos y conceptos con explicaciones integradas directamente en su experiencia de lectura. </p>
+                <p>Ofrece una comprensión más profunda de más de 363.000 temas clave, términos desconocidos y conceptos con explicaciones integradas directamente en la experiencia de lectura. </p>
                 <?php
                     if(!empty($_POST["buscar"])) {
                         $url=$ParserScienceDirect->getUrlBusqueda();
@@ -86,7 +86,7 @@ if(!empty($_POST["buscar"])) {
                 <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a ScienceDirect</button></a>
             </div>
             <div class="tab-pane fade" id="nav-ieee" role="tabpanel" aria-labelledby="nav-ieee-tab">
-                <p>IEEE Xplore es la principal plataforma digital para el descubrimiento y el acceso a contenidos científicos y técnicos publicados por el IEEE (Institute of Electrical and Electronic Engineers) y sus socios editoriales.</p>
+                <p>IEEE Xplore es una plataforma digital para el descubrimiento y el acceso a contenidos científicos y técnicos publicados por el IEEE (Institute of Electrical and Electronic Engineers) y sus socios editoriales.</p>
                 <p>IEEE Xplore contiene más de 6 millones de documentos y otros materiales de algunas de las publicaciones más citadas del mundo en ingeniería eléctrica, ciencias de la computación y otras ciencias relacionadas.</p>
                 <p>El contenido de IEEE Xplore comprende:</p>
                 <ul>
@@ -108,8 +108,14 @@ if(!empty($_POST["buscar"])) {
                 <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a IEEE Xplore</button></a>
             </div>
             <div class="tab-pane fade" id="nav-springerlink" role="tabpanel" aria-labelledby="nav-springerlink-tab">
-                <p>Como parte de Springer Nature, SpringerLink ofrece acceso rápido a la profundidad y amplitud de nuestra colección en línea de revistas, libros electrónicos, obras de referencia y protocolos en una amplia gama de disciplinas.</p>
-                <p>SpringerLink es la plataforma de lectura preferida por cientos de miles de investigadores de todo el mundo.</p>
+                <p>Como parte de Springer Nature, SpringerLink ofrece acceso rápido a la profundidad y amplitud de su colección en línea de revistas, libros electrónicos, obras de referencia y protocolos en una amplia gama de disciplinas.</p>
+                <p>SpringerLink es una plataforma de lectura utilizada por cientos de miles de investigadores de todo el mundo.</p>
+                <p>Permite la búsqueda de artículos de investigación, libros académicos y más.</p>
+                <ul>
+                    <li>200 millones de descargas mensuales</li>
+                    <li>24 millones de lectores mensuales</li>
+                    <li>3 millones de autores suben contenido anualmente</li>
+                </ul>
                 <?php
                     if(!empty($_POST["buscar"])) {
                         $url=$ParserSpringerLink->getUrlBusqueda();
