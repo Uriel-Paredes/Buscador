@@ -4,6 +4,7 @@ include_once "modelo\ParserACM.php";
 include_once "modelo\ParserScienceDirect.php";
 include_once "modelo\ParserIEEEXplore.php";
 include_once "modelo\ParserSpringerLink.php";
+var_dump($_POST);
 if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
     $bd=$_POST["bd"];
     if(!empty($bd["acm"])) {
@@ -63,12 +64,19 @@ if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
                                     </div>
                                     <input type="checkbox" name="bd[acm]" id="checkboxACM" <?= !empty($bd["acm"])? "checked" : ''; ?>>
                                     <b>ACM</b>
+                                    <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalACM"></ion-icon>
+                                    <br>
                                     <input type="checkbox" name="bd[scienceDirect]" id="checkboxScienceDirect" <?= !empty($bd["scienceDirect"])? "checked" : ''; ?>>
                                     <b>ScienceDirect</b>
+                                    <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalScienceDirect"></ion-icon>
+                                    <br>
                                     <input type="checkbox" name="bd[ieeeXplore]" id="checkboxIEEEXplore" <?= !empty($bd["ieeeXplore"])? "checked" : ''; ?>>
                                     <b>IEEE Xplore</b>
+                                    <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalIEEE"></ion-icon>
+                                    <br>
                                     <input type="checkbox" name="bd[springerLink]" id="checkboxSpringerLink" <?= !empty($bd["springerLink"])? "checked" : ''; ?>>
                                     <b>SpringerLink</b>
+                                    <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalSpringerLink"></ion-icon>
                                 </div>
                                 <p></p>
                                 <div class="d-grid gap-2">
@@ -98,16 +106,16 @@ if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <?php if(!empty($bd["acm"])) { ?>
-                                        <button class="nav-link active" id="nav-acm-tab" data-bs-toggle="tab" data-bs-target="#nav-acm" type="button" role="tab" aria-controls="nav-acm" aria-selected="true">ACM</button><ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalACM"></ion-icon>
+                                        <button class="nav-link active" id="nav-acm-tab" data-bs-toggle="tab" data-bs-target="#nav-acm" type="button" role="tab" aria-controls="nav-acm" aria-selected="true">ACM</button>
                                     <?php } ?>
                                     <?php if(!empty($bd["scienceDirect"])) { ?>
-                                        <button class="nav-link" id="nav-sciencedirect-tab" data-bs-toggle="tab" data-bs-target="#nav-sciencedirect" type="button" role="tab" aria-controls="nav-sciencedirect" aria-selected="false">ScienceDirect</button><ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalScienceDirect"></ion-icon>
+                                        <button class="nav-link" id="nav-sciencedirect-tab" data-bs-toggle="tab" data-bs-target="#nav-sciencedirect" type="button" role="tab" aria-controls="nav-sciencedirect" aria-selected="false">ScienceDirect</button>
                                     <?php } ?>
                                     <?php if(!empty($bd["ieeeXplore"])) { ?>
-                                        <button class="nav-link" id="nav-ieee-tab" data-bs-toggle="tab" data-bs-target="#nav-ieee" type="button" role="tab" aria-controls="nav-ieee" aria-selected="false">IEEE Xplore</button><ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalIEEE"></ion-icon>
+                                        <button class="nav-link" id="nav-ieee-tab" data-bs-toggle="tab" data-bs-target="#nav-ieee" type="button" role="tab" aria-controls="nav-ieee" aria-selected="false">IEEE Xplore</button>
                                     <?php } ?>
                                     <?php if(!empty($bd["springerLink"])) { ?>
-                                        <button class="nav-link" id="nav-springerlink-tab" data-bs-toggle="tab" data-bs-target="#nav-springerlink" type="button" role="tab" aria-controls="nav-springerlink" aria-selected="false">SpringerLink</button><ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalSpringerLink"></ion-icon>
+                                        <button class="nav-link" id="nav-springerlink-tab" data-bs-toggle="tab" data-bs-target="#nav-springerlink" type="button" role="tab" aria-controls="nav-springerlink" aria-selected="false">SpringerLink</button>
                                     <?php } ?>
                                 </div>
                             </nav>
