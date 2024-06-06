@@ -4,21 +4,13 @@ include_once "modelo\ParserACM.php";
 include_once "modelo\ParserScienceDirect.php";
 include_once "modelo\ParserIEEEXplore.php";
 include_once "modelo\ParserSpringerLink.php";
-var_dump($_POST);
-if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
-    $bd=$_POST["bd"];
-    if(!empty($bd["acm"])) {
-        $ParserACM = new ParserACM($_POST["buscar"]);
-    }
-    if(!empty($bd["scienceDirect"])) {
-        $ParserScienceDirect = new ParserScienceDirect($_POST["buscar"]);
-    }
-    if(!empty($bd["ieeeXplore"])) {
-        $ParserIEEEXplore = new ParserIEEEXplore($_POST["buscar"]);
-    }
-    if(!empty($bd["springerLink"])) {
-        $ParserSpringerLink = new ParserSpringerLink($_POST["buscar"]);
-    }
+include_once "controlador\ControlGUIForm.php";
+$ControlGUI = new ControlGUIForm($_POST);
+if($ControlGUI->esBusquedaValida()) {
+    $ParserACM = new ParserACM($ControlGUI->getInputBuscar());
+    $ParserScienceDirect = new ParserScienceDirect($ControlGUI->getInputBuscar());
+    $ParserIEEEXplore = new ParserIEEEXplore($ControlGUI->getInputBuscar());
+    $ParserSpringerLink = new ParserSpringerLink($ControlGUI->getInputBuscar());
 }
 ?>
 <!DOCTYPE html>
@@ -53,28 +45,28 @@ if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
                             <form method="post" autocomplete="off">
                                 <div class="form-group">
                                     <div>
-                                        <label for="buscar">Ingrese el término de búsqueda:</label>
+                                        <label for="buscar">Ingrese la cadena de búsqueda:</label>
                                     </div>
-                                    <input class="form-control me-2" id="buscar" name="buscar" type="search" required value="<?= !empty($_POST['buscar'])? $_POST['buscar'] : ''; ?>" placeholder="Buscar" aria-label="Buscar">
+                                    <input class="form-control me-2" id="buscar" name="buscar" type="search" required value="<?= $ControlGUI->getInputBuscar() ?>" placeholder="Buscar" aria-label="Buscar">
                                 </div>
                                 <p></p>
                                 <div class="form-group">
                                     <div>
                                         <label for="bd">Seleccione al menos una base de datos a continuación:</label>
                                     </div>
-                                    <input type="checkbox" name="bd[acm]" id="checkboxACM" <?= !empty($bd["acm"])? "checked" : ''; ?>>
+                                    <input type="checkbox" name="bd[acm]" id="checkboxACM" <?= $ControlGUI->getCheckACM(); ?>>
                                     <b>ACM</b>
                                     <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalACM"></ion-icon>
                                     <br>
-                                    <input type="checkbox" name="bd[scienceDirect]" id="checkboxScienceDirect" <?= !empty($bd["scienceDirect"])? "checked" : ''; ?>>
+                                    <input type="checkbox" name="bd[scienceDirect]" id="checkboxScienceDirect" <?= $ControlGUI->getCheckScienceDirect(); ?>>
                                     <b>ScienceDirect</b>
                                     <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalScienceDirect"></ion-icon>
                                     <br>
-                                    <input type="checkbox" name="bd[ieeeXplore]" id="checkboxIEEEXplore" <?= !empty($bd["ieeeXplore"])? "checked" : ''; ?>>
+                                    <input type="checkbox" name="bd[ieeeXplore]" id="checkboxIEEEXplore" <?= $ControlGUI->getCheckIEEEXplore(); ?>>
                                     <b>IEEE Xplore</b>
                                     <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalIEEE"></ion-icon>
                                     <br>
-                                    <input type="checkbox" name="bd[springerLink]" id="checkboxSpringerLink" <?= !empty($bd["springerLink"])? "checked" : ''; ?>>
+                                    <input type="checkbox" name="bd[springerLink]" id="checkboxSpringerLink" <?= $ControlGUI->getCheckSpringerLink(); ?>>
                                     <b>SpringerLink</b>
                                     <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalSpringerLink"></ion-icon>
                                 </div>
@@ -97,7 +89,7 @@ if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
                                 <p>3. Presione el botón "Buscar".</p>            
                             </div>
                     </div>
-                    <?php if (!empty($_POST["buscar"]) && !empty($_POST["bd"])) { ?>
+                    <?php if($ControlGUI->esBusquedaValida()) { ?>
                         <div class="card border-top mb-4 shadow-sm">
                             <div class="card-header">
                                 <h5 style="text-align:center;">Resultados</h5>
@@ -105,22 +97,22 @@ if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
                             <div class="card-body">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <?php if(!empty($bd["acm"])) { ?>
+                                    <?php if(!empty($ControlGUI->getCheckACM())) { ?>
                                         <button class="nav-link active" id="nav-acm-tab" data-bs-toggle="tab" data-bs-target="#nav-acm" type="button" role="tab" aria-controls="nav-acm" aria-selected="true">ACM</button>
                                     <?php } ?>
-                                    <?php if(!empty($bd["scienceDirect"])) { ?>
+                                    <?php if(!empty($ControlGUI->getCheckScienceDirect())) { ?>
                                         <button class="nav-link" id="nav-sciencedirect-tab" data-bs-toggle="tab" data-bs-target="#nav-sciencedirect" type="button" role="tab" aria-controls="nav-sciencedirect" aria-selected="false">ScienceDirect</button>
                                     <?php } ?>
-                                    <?php if(!empty($bd["ieeeXplore"])) { ?>
+                                    <?php if(!empty($ControlGUI->getCheckIEEEXplore())) { ?>
                                         <button class="nav-link" id="nav-ieee-tab" data-bs-toggle="tab" data-bs-target="#nav-ieee" type="button" role="tab" aria-controls="nav-ieee" aria-selected="false">IEEE Xplore</button>
                                     <?php } ?>
-                                    <?php if(!empty($bd["springerLink"])) { ?>
+                                    <?php if(!empty($ControlGUI->getCheckSpringerLink())) { ?>
                                         <button class="nav-link" id="nav-springerlink-tab" data-bs-toggle="tab" data-bs-target="#nav-springerlink" type="button" role="tab" aria-controls="nav-springerlink" aria-selected="false">SpringerLink</button>
                                     <?php } ?>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
-                                <?php if(!empty($bd["acm"])) { ?>
+                                <?php if(!empty($ControlGUI->getCheckACM())) { ?>
                                     <div class="tab-pane fade show active" id="nav-acm" role="tabpanel" aria-labelledby="nav-acm-tab">
                                         <?php
                                             $url=$ParserACM->getUrlBusqueda();
@@ -129,43 +121,28 @@ if(!empty($_POST["buscar"]) && !empty($_POST["bd"])) {
                                         <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a ACM</button></a>
                                     </div>
                                 <?php } ?>
-                                <?php if(!empty($bd["scienceDirect"])) { ?>
+                                <?php if(!empty($ControlGUI->getCheckScienceDirect())) { ?>
                                     <div class="tab-pane fade" id="nav-sciencedirect" role="tabpanel" aria-labelledby="nav-sciencedirect-tab">
                                         <?php
-                                            if(!empty($_POST["buscar"])) {
-                                                $url=$ParserScienceDirect->getUrlBusqueda();
-                                            }
-                                            else {
-                                                $url="https://www.sciencedirect.com";
-                                            }
+                                            $url=$ParserScienceDirect->getUrlBusqueda();
                                         ?>
                                         <p></p>
                                         <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a ScienceDirect</button></a>
                                     </div>
                                 <?php } ?>
-                                <?php if(!empty($bd["ieeeXplore"])) { ?>
+                                <?php if(!empty($ControlGUI->getCheckIEEEXplore())) { ?>
                                     <div class="tab-pane fade" id="nav-ieee" role="tabpanel" aria-labelledby="nav-ieee-tab">
                                         <?php
-                                            if(!empty($_POST["buscar"])) {
-                                                $url=$ParserIEEEXplore->getUrlBusqueda();
-                                            }
-                                            else {
-                                                $url="https://ieeexplore.ieee.org/Xplore/home.jsp";
-                                            }
+                                            $url=$ParserIEEEXplore->getUrlBusqueda();
                                         ?>
                                         <p></p>
                                         <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a IEEE Xplore</button></a>
                                     </div>
                                 <?php } ?>
-                                <?php if(!empty($bd["springerLink"])) { ?>
+                                <?php if(!empty($ControlGUI->getCheckSpringerLink())) { ?>
                                     <div class="tab-pane fade" id="nav-springerlink" role="tabpanel" aria-labelledby="nav-springerlink-tab">
                                         <?php
-                                            if(!empty($_POST["buscar"])) {
-                                                $url=$ParserSpringerLink->getUrlBusqueda();
-                                            }
-                                            else {
-                                                $url="https://link.springer.com";
-                                            }
+                                            $url=$ParserSpringerLink->getUrlBusqueda();
                                         ?>
                                         <p></p>
                                         <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a SpringerLink</button></a>
