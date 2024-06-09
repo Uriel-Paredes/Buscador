@@ -62,7 +62,6 @@ class ControlGUIForm {
     }
 
     /**
-     * @todo [06/06/2024] EN VERDAD ESTE MÉTODO DEBE AVERIGUAR SI SE PASÓ FORMULARIO O NO. TIENE VALORES POR DEFECTO O BIEN OBTENIDOS DESDE EL FORM.
      * @return Integer Año inicial de la búsqueda. Por defecto, el año actual menos la cantidad de años por defecto. Ej.: def = 5, año actual = 2024, este método devuelve 2019. Se remplaza por lo que el usuario complete en el form.
      * @since 1.4.0
      */
@@ -71,7 +70,6 @@ class ControlGUIForm {
     }
 
     /**
-     * @todo [06/06/2024] EN VERDAD ESTE MÉTODO DEBE AVERIGUAR SI SE PASÓ FORMULARIO O NO. TIENE VALORES POR DEFECTO O BIEN OBTENIDOS DESDE EL FORM.
      * @return Integer Año final de la búsqueda. Por defecto, el año actual. Ej.: 2024. Se remplaza por lo que el usuario complete en el form.  
      * @since 1.4.0
      */

@@ -72,14 +72,20 @@ if($ControlGUI->esBusquedaValida()) {
                                 </div>
                                 <p></p>
                                 <div class="form-group">
-                                    <div>
-                                        <label for="buscar">Año de Inicio:</label>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div>
+                                                <label for="anioInicio">Año de Inicio:</label>
+                                            </div>
+                                            <input class="form-control me-2" id="anioInicio" name="anioInicio" type="search" pattern="\d{4,4}" value="<?= $ControlGUI->getAnioInicioBusqueda() ?>" placeholder="Año de inicio" aria-label="Año de inicio">
+                                        </div>
+                                        <div class="col">
+                                            <div>
+                                                <label for="anioFin">Año de Fin:</label>
+                                            </div>
+                                            <input class="form-control me-2" id="anioFin" name="anioFin" type="search" pattern="\d{4,4}" value="<?= $ControlGUI->getAnioFinBusqueda() ?>" placeholder="Año de fin" aria-label="Año de fin">
+                                        </div>
                                     </div>
-                                    <input class="form-control me-2" id="anioInicio" name="anioInicio" type="search" value="<?= $ControlGUI->getAnioInicioBusqueda() ?>" placeholder="Año de inicio" aria-label="Año de inicio">
-                                    <div>
-                                        <label for="buscar">Año de Fin:</label>
-                                    </div>
-                                    <input class="form-control me-2" id="anioFin" name="anioFin" type="search" value="<?= $ControlGUI->getAnioFinBusqueda() ?>" placeholder="Año de fin" aria-label="Año de fin">
                                 </div>
                                 <p></p> 
                                 <div class="d-grid gap-2">
