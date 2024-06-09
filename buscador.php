@@ -71,6 +71,17 @@ if($ControlGUI->esBusquedaValida()) {
                                     <ion-icon name="information-circle-outline" data-bs-toggle="modal" data-bs-target="#modalSpringerLink"></ion-icon>
                                 </div>
                                 <p></p>
+                                <div class="form-group">
+                                    <div>
+                                        <label for="buscar">Año de Inicio:</label>
+                                    </div>
+                                    <input class="form-control me-2" id="anioInicio" name="anioInicio" type="search" value="<?= $ControlGUI->getAnioInicioBusqueda() ?>" placeholder="Año de inicio" aria-label="Año de inicio">
+                                    <div>
+                                        <label for="buscar">Año de Fin:</label>
+                                    </div>
+                                    <input class="form-control me-2" id="anioFin" name="anioFin" type="search" value="<?= $ControlGUI->getAnioFinBusqueda() ?>" placeholder="Año de fin" aria-label="Año de fin">
+                                </div>
+                                <p></p> 
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-lg btn-block btn-success" type="submit">Buscar</button>
                                 </div>
