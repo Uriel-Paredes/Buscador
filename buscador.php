@@ -8,7 +8,7 @@ include_once "controlador\ControlGUIForm.php";
 $ControlGUI = new ControlGUIForm($_POST);
 if($ControlGUI->esBusquedaValida()) {
     $ParserACM = new ParserACM($_POST);
-    $ParserScienceDirect = new ParserScienceDirect($ControlGUI->getInputBuscar());
+    $ParserScienceDirect = new ParserScienceDirect($_POST);
     $ParserIEEEXplore = new ParserIEEEXplore($ControlGUI->getInputBuscar());
     $ParserSpringerLink = new ParserSpringerLink($ControlGUI->getInputBuscar());
 }

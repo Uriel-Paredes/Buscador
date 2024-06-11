@@ -13,6 +13,8 @@ class ParserACM extends Parser {
         if(empty($this->formInput["anioInicio"]) && empty($this->formInput["anioFin"])) {
             return $this->urlBase."AllField=".str_replace(' ', '+', $this->formInput["buscar"]);
         }
+        $anioInicio="";
+        $anioFin="";
         if(!empty($this->formInput["anioInicio"])) {
             $anioInicio="&AfterYear=".$this->formInput["anioInicio"];
         }
