@@ -7,7 +7,7 @@ include_once "modelo\ParserSpringerLink.php";
 include_once "controlador\ControlGUIForm.php";
 $ControlGUI = new ControlGUIForm($_POST);
 if($ControlGUI->esBusquedaValida()) {
-    $ParserACM = new ParserACM($ControlGUI->getInputBuscar());
+    $ParserACM = new ParserACM($_POST);
     $ParserScienceDirect = new ParserScienceDirect($ControlGUI->getInputBuscar());
     $ParserIEEEXplore = new ParserIEEEXplore($ControlGUI->getInputBuscar());
     $ParserSpringerLink = new ParserSpringerLink($ControlGUI->getInputBuscar());

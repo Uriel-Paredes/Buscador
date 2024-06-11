@@ -2,16 +2,24 @@
 class ParserACM extends Parser {
 
     function __construct($formInput) {
-        $this->urlBase = "https://dl.acm.org/action/doSearch?AllField=";
+        $this->urlBase = "https://dl.acm.org/action/doSearch?";
         $this->formInput = $formInput;
     }
 
     /**
-     * @todo [09/06/2024] Implementar la búsqueda con fecha de inicio y fecha de fin
      * @since 1.4.1
      */
     function getUrlBusqueda() {
-        return $this->urlBase.str_replace(' ', '+', $this->formInput);
+        if(empty($this->formInput["anioInicio"]) && empty($this->formInput["anioFin"])) {
+            return $this->urlBase."AllField=".str_replace(' ', '+', $this->formInput["buscar"]);
+        }
+        if(!empty($this->formInput["anioInicio"])) {
+            $anioInicio="&AfterYear=".$this->formInput["anioInicio"];
+        }
+        if(!empty($this->formInput["anioFin"])) {
+            $anioFin="&BeforeYear=".$this->formInput["anioFin"];
+        }
+        return $this->urlBase."fillQuickSearch=false&target=advanced&expand=dl&field1=AllField&text1=".str_replace(' ', '+', $this->formInput["buscar"]).$anioInicio.$anioFin;
     }
 }
 ?>
