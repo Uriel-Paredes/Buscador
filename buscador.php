@@ -10,7 +10,7 @@ if($ControlGUI->esBusquedaValida()) {
     $ParserACM = new ParserACM($_POST);
     $ParserScienceDirect = new ParserScienceDirect($_POST);
     $ParserIEEEXplore = new ParserIEEEXplore($_POST);
-    $ParserSpringerLink = new ParserSpringerLink($ControlGUI->getInputBuscar());
+    $ParserSpringerLink = new ParserSpringerLink($_POST);
 }
 ?>
 <!DOCTYPE html>
