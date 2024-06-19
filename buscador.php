@@ -131,38 +131,26 @@ if($ControlGUI->esBusquedaValida()) {
                             <div class="tab-content" id="nav-tabContent">
                                 <?php if(!empty($ControlGUI->getCheckACM())) { ?>
                                     <div class="tab-pane fade show active" id="nav-acm" role="tabpanel" aria-labelledby="nav-acm-tab">
-                                        <?php
-                                            $url=$ParserACM->getUrlBusqueda();
-                                        ?>
                                         <p></p>
-                                        <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a ACM</button></a>
+                                        <a href="<?= $ParserACM->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a ACM</button></a>
                                     </div>
                                 <?php } ?>
                                 <?php if(!empty($ControlGUI->getCheckScienceDirect())) { ?>
                                     <div class="tab-pane fade" id="nav-sciencedirect" role="tabpanel" aria-labelledby="nav-sciencedirect-tab">
-                                        <?php
-                                            $url=$ParserScienceDirect->getUrlBusqueda();
-                                        ?>
                                         <p></p>
-                                        <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a ScienceDirect</button></a>
+                                        <a href="<?= $ParserScienceDirect->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a ScienceDirect</button></a>
                                     </div>
                                 <?php } ?>
                                 <?php if(!empty($ControlGUI->getCheckIEEEXplore())) { ?>
                                     <div class="tab-pane fade" id="nav-ieee" role="tabpanel" aria-labelledby="nav-ieee-tab">
-                                        <?php
-                                            $url=$ParserIEEEXplore->getUrlBusqueda();
-                                        ?>
                                         <p></p>
-                                        <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a IEEE Xplore</button></a>
+                                        <a href="<?= $ParserIEEEXplore->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a IEEE Xplore</button></a>
                                     </div>
                                 <?php } ?>
                                 <?php if(!empty($ControlGUI->getCheckSpringerLink())) { ?>
                                     <div class="tab-pane fade" id="nav-springerlink" role="tabpanel" aria-labelledby="nav-springerlink-tab">
-                                        <?php
-                                            $url=$ParserSpringerLink->getUrlBusqueda();
-                                        ?>
                                         <p></p>
-                                        <a <?php echo "href='".$url."'"; ?> target="_blank"><button type="button" class="btn btn-primary">Enlace a SpringerLink</button></a>
+                                        <a href="<?= $ParserSpringerLink->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a SpringerLink</button></a>
                                     </div>
                                 <?php } ?>
                             </div>

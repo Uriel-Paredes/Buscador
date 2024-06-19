@@ -4,24 +4,34 @@ class ParserACM extends Parser {
     function __construct($formInput) {
         $this->urlBase = "https://dl.acm.org/action/doSearch?";
         $this->formInput = $formInput;
+        $this->setInputCadenaBusqueda();
+        $this->setInputAnioInicio();
+        $this->setInputAnioFin();
+    }
+
+    function setInputCadenaBusqueda() {
+        $this->inputCadenaBusqueda = htmlspecialchars(str_replace(' ', '+', $this->formInput["buscar"]));
+    }
+
+    function setInputAnioInicio() {
+        if(!empty($this->formInput["anioInicio"])) {
+            $this->inputAnioInicio = "&AfterYear=".$this->formInput["anioInicio"];
+        }
+    }
+
+    function setInputAnioFin() {
+        if(!empty($this->formInput["anioFin"])) {
+            $this->inputAnioFin = "&BeforeYear=".$this->formInput["anioFin"];
+        }
     }
 
     /**
-     * @since 1.4.1
+     * @since 1.4.2
      */
     function getUrlBusqueda() {
-        if(empty($this->formInput["anioInicio"]) && empty($this->formInput["anioFin"])) {
-            return $this->urlBase."AllField=".str_replace(' ', '+', $this->formInput["buscar"]);
+        if(!$this->inputAnioInicio && !$this->inputAnioFin) {
+            return $this->urlBase."AllField=".$this->inputCadenaBusqueda;
         }
-        $anioInicio="";
-        $anioFin="";
-        if(!empty($this->formInput["anioInicio"])) {
-            $anioInicio="&AfterYear=".$this->formInput["anioInicio"];
-        }
-        if(!empty($this->formInput["anioFin"])) {
-            $anioFin="&BeforeYear=".$this->formInput["anioFin"];
-        }
-        return $this->urlBase."fillQuickSearch=false&target=advanced&expand=dl&field1=AllField&text1=".str_replace(' ', '+', $this->formInput["buscar"]).$anioInicio.$anioFin;
+        return $this->urlBase."fillQuickSearch=false&target=advanced&expand=dl&field1=AllField&text1=".$this->inputCadenaBusqueda.$this->inputAnioInicio.$this->inputAnioFin;
     }
 }
-?>

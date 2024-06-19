@@ -27,7 +27,7 @@ class ControlGUIForm {
         if(!isset($this->arrayPost["bd"]["scienceDirect"])) $this->checkScienceDirect = null;
         if(!isset($this->arrayPost["bd"]["ieeeXplore"])) $this->checkIEEEXplore = null;
         if(!isset($this->arrayPost["bd"]["springerLink"])) $this->checkSpringerLink = null;
-        $this->inputBuscar = $this->arrayPost["buscar"];
+        $this->inputBuscar = htmlspecialchars($this->arrayPost["buscar"]);
     }
 
     function getCheckACM() {
@@ -78,4 +78,3 @@ class ControlGUIForm {
     }
 
 }
-?>
