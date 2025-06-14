@@ -1,18 +1,22 @@
 <?php
-include_once "modelo\Parser.php";
-include_once "modelo\ParserACM.php";
-include_once "modelo\ParserScienceDirect.php";
-include_once "modelo\ParserIEEEXplore.php";
-include_once "modelo\ParserSpringerLink.php";
-include_once "controlador\ControlGUIForm.php";
+
+require 'vendor/autoload.php';
+
+use controlador\ControlGUIForm;
+use modelo\ParserACM;
+use modelo\ParserScienceDirect;
+use modelo\ParserIEEEXplore;
+use modelo\ParserSpringerLink;
+
 $ControlGUI = new ControlGUIForm($_POST);
-if($ControlGUI->esBusquedaValida()) {
+if ($ControlGUI->esBusquedaValida()) {
     $ParserACM = new ParserACM($_POST);
     $ParserScienceDirect = new ParserScienceDirect($_POST);
     $ParserIEEEXplore = new ParserIEEEXplore($_POST);
     $ParserSpringerLink = new ParserSpringerLink($_POST);
 }
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -106,7 +110,7 @@ if($ControlGUI->esBusquedaValida()) {
                                 <p>3. Presione el botón "Buscar".</p>            
                             </div>
                     </div>
-                    <?php if($ControlGUI->esBusquedaValida()) { ?>
+                    <?php if ($ControlGUI->esBusquedaValida()) { ?>
                         <div class="card border-top mb-4 shadow-sm">
                             <div class="card-header">
                                 <h5 style="text-align:center;">Resultados</h5>
@@ -114,40 +118,40 @@ if($ControlGUI->esBusquedaValida()) {
                             <div class="card-body">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <?php if(!empty($ControlGUI->getCheckACM())) { ?>
+                                    <?php if (!empty($ControlGUI->getCheckACM())) { ?>
                                         <button class="nav-link active" id="nav-acm-tab" data-bs-toggle="tab" data-bs-target="#nav-acm" type="button" role="tab" aria-controls="nav-acm" aria-selected="true">ACM</button>
                                     <?php } ?>
-                                    <?php if(!empty($ControlGUI->getCheckScienceDirect())) { ?>
+                                    <?php if (!empty($ControlGUI->getCheckScienceDirect())) { ?>
                                         <button class="nav-link" id="nav-sciencedirect-tab" data-bs-toggle="tab" data-bs-target="#nav-sciencedirect" type="button" role="tab" aria-controls="nav-sciencedirect" aria-selected="false">ScienceDirect</button>
                                     <?php } ?>
-                                    <?php if(!empty($ControlGUI->getCheckIEEEXplore())) { ?>
+                                    <?php if (!empty($ControlGUI->getCheckIEEEXplore())) { ?>
                                         <button class="nav-link" id="nav-ieee-tab" data-bs-toggle="tab" data-bs-target="#nav-ieee" type="button" role="tab" aria-controls="nav-ieee" aria-selected="false">IEEE Xplore</button>
                                     <?php } ?>
-                                    <?php if(!empty($ControlGUI->getCheckSpringerLink())) { ?>
+                                    <?php if (!empty($ControlGUI->getCheckSpringerLink())) { ?>
                                         <button class="nav-link" id="nav-springerlink-tab" data-bs-toggle="tab" data-bs-target="#nav-springerlink" type="button" role="tab" aria-controls="nav-springerlink" aria-selected="false">SpringerLink</button>
                                     <?php } ?>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
-                                <?php if(!empty($ControlGUI->getCheckACM())) { ?>
+                                <?php if (!empty($ControlGUI->getCheckACM())) { ?>
                                     <div class="tab-pane fade show active" id="nav-acm" role="tabpanel" aria-labelledby="nav-acm-tab">
                                         <p></p>
                                         <a href="<?= $ParserACM->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a ACM</button></a>
                                     </div>
                                 <?php } ?>
-                                <?php if(!empty($ControlGUI->getCheckScienceDirect())) { ?>
+                                <?php if (!empty($ControlGUI->getCheckScienceDirect())) { ?>
                                     <div class="tab-pane fade" id="nav-sciencedirect" role="tabpanel" aria-labelledby="nav-sciencedirect-tab">
                                         <p></p>
                                         <a href="<?= $ParserScienceDirect->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a ScienceDirect</button></a>
                                     </div>
                                 <?php } ?>
-                                <?php if(!empty($ControlGUI->getCheckIEEEXplore())) { ?>
+                                <?php if (!empty($ControlGUI->getCheckIEEEXplore())) { ?>
                                     <div class="tab-pane fade" id="nav-ieee" role="tabpanel" aria-labelledby="nav-ieee-tab">
                                         <p></p>
                                         <a href="<?= $ParserIEEEXplore->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a IEEE Xplore</button></a>
                                     </div>
                                 <?php } ?>
-                                <?php if(!empty($ControlGUI->getCheckSpringerLink())) { ?>
+                                <?php if (!empty($ControlGUI->getCheckSpringerLink())) { ?>
                                     <div class="tab-pane fade" id="nav-springerlink" role="tabpanel" aria-labelledby="nav-springerlink-tab">
                                         <p></p>
                                         <a href="<?= $ParserSpringerLink->getUrlBusqueda() ?>" target="_blank"><button type="button" class="btn btn-primary">Enlace a SpringerLink</button></a>
