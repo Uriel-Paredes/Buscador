@@ -1,6 +1,6 @@
 <?php
 
-namespace controlador;
+namespace Controlador;
 
 class ControlGUIForm
 {

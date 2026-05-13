@@ -1,9 +1,9 @@
 <?php
 
-namespace controlador;
+namespace Controlador;
 
 use Mysqli;
-use modelo\Busqueda;
+use Modelo\Busqueda;
 
 class ControlBD
 {
@@ -34,6 +34,11 @@ class ControlBD
         return (isset($this->arrayPost) && isset($this->arrayPost["botonBuscar"]));
     }
 
+    /**
+     * @param  Busqueda $Busqueda Datos de busqueda recibidos en el formulario
+     * 
+     * @return void
+     */
     public function crearBusqueda($Busqueda)
     {
         $cadenaBusqueda = $Busqueda->getCadenaBusqueda();

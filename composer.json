@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Controlador\\": "src/controlador",
+            "Modelo\\": "src/modelo"
         }
     }
 }
