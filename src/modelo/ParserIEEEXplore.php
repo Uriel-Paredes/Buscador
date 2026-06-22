@@ -1,6 +1,6 @@
 <?php
 
-namespace modelo;
+namespace Modelo;
 
 class ParserIEEEXplore extends Parser
 {

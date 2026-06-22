@@ -2,18 +2,25 @@
 
 require 'vendor/autoload.php';
 
-use controlador\ControlGUIForm;
-use modelo\ParserACM;
-use modelo\ParserScienceDirect;
-use modelo\ParserIEEEXplore;
-use modelo\ParserSpringerLink;
+use Controlador\ControlGUIForm;
+use Controlador\ControlBD;
+use Modelo\ParserACM;
+use Modelo\ParserScienceDirect;
+use Modelo\ParserIEEEXplore;
+use Modelo\ParserSpringerLink;
+use Modelo\Busqueda;
 
 $ControlGUI = new ControlGUIForm($_POST);
 if ($ControlGUI->esBusquedaValida()) {
-    $ParserACM = new ParserACM($_POST);
-    $ParserScienceDirect = new ParserScienceDirect($_POST);
-    $ParserIEEEXplore = new ParserIEEEXplore($_POST);
-    $ParserSpringerLink = new ParserSpringerLink($_POST);
+    $ParserACM = !empty($ControlGUI->getCheckACM()) ? new ParserACM($_POST) : null;
+    $ParserScienceDirect = !empty($ControlGUI->getCheckScienceDirect()) ? new ParserScienceDirect($_POST) : null;
+    $ParserIEEEXplore = !empty($ControlGUI->getCheckIEEEXplore()) ? new ParserIEEEXplore($_POST) : null;
+    $ParserSpringerLink = !empty($ControlGUI->getCheckSpringerLink()) ? new ParserSpringerLink($_POST) : null;
+    $ControlBD = new ControlBD($_POST);
+    $Busqueda = new Busqueda($_POST);
+    if ($ControlBD->busquedaCreada()) {
+        $ControlBD->crearBusqueda($Busqueda);
+    }
 }
 ?>
 
@@ -93,7 +100,7 @@ if ($ControlGUI->esBusquedaValida()) {
                                 </div>
                                 <p></p> 
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-lg btn-block btn-success" type="submit">Buscar</button>
+                                    <button class="btn btn-lg btn-block btn-success" id="botonBuscar" name="botonBuscar" type="submit">Buscar</button>
                                 </div>
                             </form>
                         </div>
